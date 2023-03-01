@@ -1,0 +1,71 @@
+{% comment %} {% extends 'base.html' %}   {% endcomment %}
+
+{% load static %}  
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="text/tailwindcss">
+        tailwind.config = {
+          theme: {
+            screens: {
+              'sm': '640px',
+              'md': '768px',
+              'lg': '1024px',
+              'xl': '1280px',
+            },
+            theme.extend.backgroundColor,
+            extend: {
+              colors: {
+                clifford: '#da373d',
+              }
+            }
+          }
+        }
+      </script>
+    <title>Classifier</title>
+</head>
+<body class="container mx-auto border m-2 p-5 rounded-lg bg-slate-100">
+  <h1 class="p-3 text-black mx-auto bg-gradient-to-r from-cyan-500 to-blue-500 text-center text-2xl"><b>Dog Classifier</b></h1>
+  <div class="container mx-auto border m-2 rounded-lg p-2">
+      <form action="" method="post" class="block m-2 text-center" enctype="multipart/form-data" >
+          {% csrf_token %}
+          {% comment %} {{form.as_p}} {% endcomment %}
+         <div class="border-2 p-2 mx-auto max-w-fit rounded-sm">
+          <div class="items-center justify-center bg-gray-200 p-4 m-2">
+              {{form.name.label_tag}}
+              <b>{{ form.name}}</b>
+              <div class="justify-center items-center m-2">
+                  {{form.image.label_tag}}
+                  {{form.image}}
+                  {{ form.image.url }}
+                  {% comment %} {% static '{{img}}' %} {% endcomment %}
+                  {% comment %} {{img}} {% endcomment %}
+              <img src="static{{ img }}" alt="connect" style="max-height:300px">
+
+              
+              </div>  
+              <div class="p-1 mx-auto">
+              {{form.breed.label_tag}}
+              <b>{{form.breed}}</b>
+              </div>
+             <button class="bg-blue-100 rounded p-0" id='submit' type='submit' name="submit">Submit</button>
+         </div>
+       </form>  
+       {% comment %} {% if image %}  
+       <h3>Succesfully uploaded : {{image.caption}}</h3>  
+       <img src="{{ image}}" alt="connect" style="max-height:300px">
+   {% endif %} {% endcomment %}
+  </div>
+   
+</body>
+
+{% endblock content %}  
+
+</html>
