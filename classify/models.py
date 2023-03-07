@@ -7,7 +7,7 @@ from django import forms
 class Dog(models.Model):
     image = models.ImageField(upload_to='images/')
     name = models.CharField(max_length=255, blank=True)
-    breed = models.CharField(max_length=255, blank=True)
+    caption = models.CharField(max_length=255, blank=True)
     
 
     def __str__(self):

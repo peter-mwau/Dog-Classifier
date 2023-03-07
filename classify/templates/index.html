@@ -45,23 +45,17 @@
                   {{form.image.label_tag}}
                   {{form.image}}
                   {{ form.image.url }}
-                  {% comment %} {% static '{{img}}' %} {% endcomment %}
-                  {% comment %} {{img}} {% endcomment %}
               <img src="static{{ img }}" alt="connect" style="max-height:300px">
 
               
               </div>  
               <div class="p-1 mx-auto">
-              {{form.breed.label_tag}}
-              <b>{{form.breed}}</b>
+              {{form.caption.label_tag}}
+              <b>{{form.caption}}</b>
               </div>
              <button class="bg-blue-100 rounded p-0" id='submit' type='submit' name="submit">Submit</button>
          </div>
        </form>  
-       {% comment %} {% if image %}  
-       <h3>Succesfully uploaded : {{image.caption}}</h3>  
-       <img src="{{ image}}" alt="connect" style="max-height:300px">
-   {% endif %} {% endcomment %}
   </div>
    
 </body>

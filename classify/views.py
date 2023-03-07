@@ -34,6 +34,7 @@ def index(request):
                 
 	        ]
             }).json()
+            # print(response)
 
             dog = response["data"]
             #convert dictionary to string
@@ -44,26 +45,30 @@ def index(request):
             name = dog[0]['label']
             print(name)
             
-            # response = requests.post("https://elitecode-captioner.hf.space/run/predict", json={
-	        # "data": [
-		    #     "data:image/png;base64," + encoded_image.decode('utf-8'),
-	        # ]
-            # })
+            response = requests.post("https://elitecode-captioner.hf.space/run/predict", json={
+	        "data": [
+		        "data:image/jpg;base64," + encoded_image.decode('utf-8'),
+	        ]
+            })
             # .json()
 
             # data = response["data"]
             # caption = data['data']
             # caption = caption[0]
             # print(caption)
-            # data = response.json()
-            # caption = data['data']
-            # caption = caption[0]
-            # print(caption)
+            data = response.json()
+            caption = data['data']
+            caption = caption[0]
+            print(caption)
+            # print(response)
 
             form.save()
+            #save the name and caption to the database
+            # dog = Dog.objects.create(name=name, caption=caption)
+            # dog.save()
 
-            form = ImageUploadForm(initial={'name': name})
-            return render(request, 'index.html', {'form': form, 'name': name, 'img': img_url})
+            form = ImageUploadForm(initial={'name': name, 'caption': caption})
+            return render(request, 'index.html', {'form': form, 'name': name, 'img': img_url, 'caption': caption})
         else:
             return render(request, 'index.html', {'form': form, 'name': 'No dog found'})
     return render(request, 'index.html')
